@@ -17,6 +17,6 @@ class ApplicationController < ActionController::Base
   end
 
   def new_session_path(scope)
-    "/"
+    abort "failure " + env["omniauth.auth"].inspect
   end
 end

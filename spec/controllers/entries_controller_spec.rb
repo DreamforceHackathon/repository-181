@@ -4,6 +4,7 @@ RSpec.describe EntriesController, type: :controller do
   let!(:sequence) { FactoryGirl.create(:sequence) }
 
   before(:each) { request.env["HTTP_ACCEPT"] = 'application/json' }
+  before(:each) { sign_in(sequence.user) }
 
   describe "index" do
     let!(:entry) { FactoryGirl.create(:entry, sequence: sequence) }

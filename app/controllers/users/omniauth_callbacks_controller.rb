@@ -10,11 +10,14 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   private
 
   def from_omniauth(auth)
-    user = User.first_or_initialize(email: auth.info.email)
-    user.provider = auth.provider
-    user.uid = auth.uid
-    user.name = auth.info.name if user.name.blank?
-    user.save
-    user
+    User.first_or_initialize(email: auth.info.email).tap do |user|
+      user.sfdc_instance_url = auth.credentials.instance_url
+      user.sfdc_oauth_token = auth.credentials.token
+      user.sfdc_refresh_token = auth.credentials.refresh_token
+      user.provider = auth.provider
+      user.uid = auth.uid
+      user.name = auth.info.name if user.name.blank?
+      user.save
+    end
   end
 end

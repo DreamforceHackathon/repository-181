@@ -21,6 +21,9 @@ class UsersController < ApiController
 
   def configure_sfdc
     current_user.update_attributes(sfdc_config: params[:sfdc_config], sfdc_setup: true)
+    current_user.sfdc_config.each do |type, active|
+      SequenceCreator.new(current_user, type).call!
+    end
     respond_with current_user
   end
 
@@ -28,5 +31,37 @@ class UsersController < ApiController
 
   def user_params
     @user_params ||= params.permit(:name, :organization, :email, :password)
+  end
+
+  SequenceCreator = Struct.new(:user, :type) do
+    def call!
+      if user.sfdc_config[type]
+        create_sequence!
+      else
+        disable_sequence!
+      end
+    end
+
+    private
+
+    def name
+      User::SFDC_FIELDS[type.to_s]
+    end
+
+    def processor
+      "Processor::#{name}"
+    end
+
+    def sequence
+      user.sequences.find_by(processor: processor)
+    end
+
+    def create_sequence!
+      user.sequences.where(processor: processor).first_or_create!(title: "SFDC #{name}")
+    end
+
+    def disable_sequence!
+      sequence.update!(active: false) if sequence
+    end
   end
 end

@@ -36,11 +36,49 @@ RSpec.describe UsersController, :type => :controller do
 
     context "with a user" do
       it "has the user" do
-        sign_in(FactoryGirl.create(:users))
+        sign_in(FactoryGirl.create(:user))
         get :show
         expect(response_json).to include("id", "name", "organization")
         expect(response_json).not_to include("encrypted_password", "created_at")
       end
+    end
+  end
+
+  describe "configure_sfdc" do
+    let(:user) { FactoryGirl.create(:user) }
+    before(:each) { sign_in(user) }
+
+    it "updates the config" do
+      expect {
+        post :configure_sfdc, sfdc_config: { leads: true }
+      }.to change{ user.reload.sfdc_config["leads"] }.from(nil).to(true)
+    end
+
+    it "marks the user configured" do
+      expect {
+        post :configure_sfdc
+      }.to change{ user.reload.sfdc_setup }.from(false).to(true)
+    end
+
+    it "creates a single sequence" do
+      expect {
+        post :configure_sfdc, sfdc_config: { leads: true }
+      }.to change{ user.sequences.count }.by(1)
+
+      expect(user.sequences.last.processor).to eq("Processor::Lead")
+    end
+
+    it "creates many sequences" do
+      expect {
+        post :configure_sfdc, sfdc_config: { leads: true, contacts: true }
+      }.to change{ user.sequences.count }.by(2)
+    end
+
+    it "doesn't double create" do
+      user.sequences.create!(title: "Test", processor: "Processor::Lead")
+      expect {
+        post :configure_sfdc, sfdc_config: { leads: true }
+      }.not_to change{ user.sequences.count }
     end
   end
 end

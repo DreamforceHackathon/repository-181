@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141011180407) do
+ActiveRecord::Schema.define(version: 20141011231407) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,24 +23,33 @@ ActiveRecord::Schema.define(version: 20141011180407) do
     t.datetime "image_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id",            null: false
   end
 
+  add_index "chart_instances", ["user_id"], name: "index_chart_instances_on_user_id", using: :btree
+
   create_table "entries", force: true do |t|
-    t.datetime "point_time",  null: false
-    t.float    "point_value", null: false
+    t.datetime "point_time",                        null: false
+    t.float    "point_value",                       null: false
     t.integer  "sequence_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "source",      default: "automatic", null: false
   end
 
   add_index "entries", ["point_time"], name: "index_entries_on_point_time", using: :btree
   add_index "entries", ["sequence_id"], name: "index_entries_on_sequence_id", using: :btree
 
   create_table "sequences", force: true do |t|
-    t.string   "title",      null: false
+    t.string   "title",                     null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "processor"
+    t.boolean  "active",     default: true
+    t.integer  "user_id",                   null: false
   end
+
+  add_index "sequences", ["user_id"], name: "index_sequences_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: ""
@@ -61,9 +70,11 @@ ActiveRecord::Schema.define(version: 20141011180407) do
     t.string   "uid"
     t.json     "sfdc_config"
     t.boolean  "sfdc_setup",             default: false
+    t.text     "sfdc_oauth_token"
+    t.text     "sfdc_refresh_token"
+    t.text     "sfdc_instance_url"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

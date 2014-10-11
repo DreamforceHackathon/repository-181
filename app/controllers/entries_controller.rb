@@ -1,4 +1,6 @@
 class EntriesController < ApiController
+  before_filter :authenticate_user!
+
   def index
     respond_with sequence, entries.order(point_time: :asc)
   end
@@ -18,7 +20,7 @@ class EntriesController < ApiController
   private
 
   def sequence
-    @sequence ||= Sequence.find(params[:sequence_id])
+    @sequence ||= current_user.sequences.find(params[:sequence_id])
   end
 
   def entries

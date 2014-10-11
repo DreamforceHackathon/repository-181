@@ -6,7 +6,7 @@ RSpec.describe DailyAggregator do
     { date: Time.current - 3.days, val: 47 },
     { date: Time.current - 2.days, val: 53 },
     { date: Time.current - 1.days, val: 42 },
-    { date: Time.current - 1.days * 0.75, val: 7 },
+    { date: Time.current - 1.days - 1.second, val: 7 },
   ]}
 
   let(:simple_data) {[

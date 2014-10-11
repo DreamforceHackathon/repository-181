@@ -10,6 +10,8 @@ gem 'dotenv-rails'
 
 gem 'active_model_serializers'
 
+gem 'sidekiq'
+
 # db
 gem 'pg'
 
@@ -24,6 +26,8 @@ gem 'aws-sdk', '~> 1.34'
 
 gem 'devise'
 gem 'omniauth-salesforce'
+
+gem 'restforce', git: "https://github.com/crisply/restforce"
 
 group :development do
   gem 'spring-commands-rspec'
