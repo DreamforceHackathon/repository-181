@@ -16,7 +16,7 @@ RSpec.describe Analyzer::Mamr do
       expect(subject.ranges).to eq({
         (Time.now - 2.days).strftime("%Y-%m-%d") => 4,
         (Time.now - 1.days).strftime("%Y-%m-%d") => 6,
-        (Time.now - 0.days).strftime("%Y-%m-%d") => -8,
+        (Time.now - 0.days).strftime("%Y-%m-%d") => 8,
         (Time.now + 1.days).strftime("%Y-%m-%d") => 4
       })
     end

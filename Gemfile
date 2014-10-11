@@ -22,6 +22,8 @@ gem 'slim-rails'
 gem 'paperclip'
 gem 'aws-sdk', '~> 1.34'
 
+gem 'devise'
+
 group :development do
   gem 'spring-commands-rspec'
 end

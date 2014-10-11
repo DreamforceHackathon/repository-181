@@ -28,7 +28,6 @@ var APP = angular.module('Incontrol', [
 ]);
 
 APP.config(function($stateProvider, $urlRouterProvider, $locationProvider, RestangularProvider) {
-  RestangularProvider.setBaseUrl("/api");
   RestangularProvider.setRequestSuffix(".json");
 
   $urlRouterProvider.otherwise("/");
