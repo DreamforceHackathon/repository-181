@@ -1,0 +1,132 @@
+pre
+  = @xbar.values
+pre
+  = @xbar.cl
+  = @xbar.ucl
+  = @xbar.lcl
+
+pre
+  = @sbar.values
+pre
+  = @sbar.cl
+
+#xbar
+#sbar
+
+
+javascript:
+  $('#xbar').highcharts({
+    title: {
+      text: 'XBar Chart',
+      x: -20 //center
+    },
+    yAxis: {
+      title: {
+        text: 'Value'
+      },
+      min: #{@xbar.lcl},
+      max: #{@xbar.ucl},
+      plotLines: [
+        {
+          color: 'black',
+          value: #{@xbar.cl},
+          width: 3
+        },
+        {
+          color: 'green',
+          value: #{@xbar.cl(1)},
+          width: 2
+        },
+        {
+          color: 'green',
+          value: #{@xbar.cl(-1)},
+          width: 2
+        },
+        {
+          color: 'yellow',
+          value: #{@xbar.cl(2)},
+          width: 2
+        },
+        {
+          color: 'yellow',
+          value: #{@xbar.cl(-2)},
+          width: 2
+        },
+        {
+          color: 'red',
+          value: #{@xbar.cl(3)},
+          width: 2
+        },
+        {
+          color: 'red',
+          value: #{@xbar.cl(-3)},
+          width: 2
+        }
+      ]
+    },
+
+    series: [
+      {
+        name: '#{@sequence.title}',
+        data: #{@xbar.values.html_safe}
+      }
+    ]
+  });
+
+  $('#sbar').highcharts({
+    title: {
+      text: 'SBar Chart',
+      x: -20 //center
+    },
+    yAxis: {
+      title: {
+        text: 'Value'
+      },
+      min: #{@sbar.lcl},
+      max: #{@sbar.ucl},
+      plotLines: [
+        {
+          color: 'black',
+          value: #{@sbar.cl},
+          width: 3
+        },
+        {
+          color: 'green',
+          value: #{@sbar.cl(1)},
+          width: 2
+        },
+        {
+          color: 'green',
+          value: #{@sbar.cl(-1)},
+          width: 2
+        },
+        {
+          color: 'yellow',
+          value: #{@sbar.cl(2)},
+          width: 2
+        },
+        {
+          color: 'yellow',
+          value: #{@sbar.cl(-2)},
+          width: 2
+        },
+        {
+          color: 'red',
+          value: #{@sbar.cl(3)},
+          width: 2
+        },
+        {
+          color: 'red',
+          value: #{@sbar.cl(-3)},
+          width: 2
+        }
+      ]
+    },
+
+    series: [
+      {
+        name: '#{@sequence.title}',
+        data: #{@sbar.values.html_safe}
+      }
+    ]
+  });

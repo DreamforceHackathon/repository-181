@@ -5,6 +5,7 @@ class DailyAggregator
     @points = points
   end
 
+  # Returns in format { date => value, ... }
   def data
     @data ||= begin
       aggregate_by_date.sort.to_h
