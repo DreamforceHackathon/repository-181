@@ -11,7 +11,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resource :user
+  resource :user do
+    member do
+      get 'logout'
+    end
+  end
 
   root "application#index"
   get '*path' => 'application#index'

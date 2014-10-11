@@ -13,6 +13,12 @@ class UsersController < ApiController
     end
   end
 
+  def logout
+    sign_out
+
+    render json: true
+  end
+
   private
 
   def user_params

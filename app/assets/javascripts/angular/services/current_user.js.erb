@@ -1,0 +1,30 @@
+APP.service("CurrentUser", ['Restangular', '$state', '$window', function(Restangular, $state, $window) {
+  var CurrentUser = {
+    user: null,
+
+    load: function() {
+      Restangular.one("user").get().then(function(user) {
+        CurrentUser.user = user;
+        $state.go('dashboard');
+      }, function(error) {
+        if (error.status == 404) {
+          CurrentUser.user = null;
+          $state.go('home');
+        }
+      });
+    },
+
+    logout: function() {
+      Restangular.one("user").customGET("logout").then(function() {
+        CurrentUser.user = null;
+        $state.go('home');
+      });
+    },
+
+    login: function() {
+      $window.location.href = "<%= Rails.application.routes.url_helpers.user_omniauth_authorize_path(provider: "salesforce") %>";
+    }
+  };
+
+  return CurrentUser;
+}]);

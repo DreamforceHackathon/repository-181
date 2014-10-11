@@ -7,7 +7,7 @@ div content-for="title" Get Started
       p
         ' Get the most out of your data with InControl. Using statistically proven control charts, you
         ' can gain confidence in your processes.
-      button.btn.btn-info.btn-block Log In
+      button.btn.btn-info.btn-block ng-click="CurrentUser.login()" Log In
 
     .actions
       button.btn.btn-primary.btn-block ui-sref="signup" Sign Up Now

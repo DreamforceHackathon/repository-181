@@ -52,6 +52,7 @@ APP.config(function($stateProvider, $urlRouterProvider, $locationProvider, Resta
   $locationProvider.html5Mode(true);
 }).
 
-run(['CurrentUser', function(CurrentUser) {
+run(['CurrentUser', '$rootScope', function(CurrentUser, $rootScope) {
   CurrentUser.load();
+  $rootScope.CurrentUser = CurrentUser;
 }]);
