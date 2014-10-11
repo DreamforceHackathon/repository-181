@@ -7,5 +7,6 @@ Rails.application.routes.draw do
     end
   end
 
-  root "application#chart"
+  root "application#index"
+  get '*path' => 'application#index'
 end

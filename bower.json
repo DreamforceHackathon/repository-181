@@ -1,0 +1,13 @@
+{
+  "name": "bgc",
+  "dependencies": {
+    "angular": "latest",
+    "restangular": "latest",
+    "angular-ui-router": "latest",
+    "mobile-angular-ui": "~1.1.0-beta.29",
+    "angular-animate": "latest",
+    "pnotify": "latest",
+    "bootstrap" :"latest",
+    "font-awesome": "latest"
+  }
+}

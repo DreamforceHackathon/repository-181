@@ -1,0 +1,18 @@
+#mainSidebar.sidebar.sidebar-left parent-active-class="sidebar-left-in" toggleable=""
+  h1.app-name
+    |  In Control
+  .scrollable
+    .scrollable-content
+      .list-group bubble="" target="mainSidebar" toggle="off"
+        a.list-group-item
+          | Setup Sequence
+          i.fa.fa-chevron-right.pull-right
+.app
+  .navbar.navbar-app.navbar-absolute-top
+    .navbar-brand.navbar-brand-center yield-to="title"
+    .btn-group.pull-left
+      .btn.btn-navbar.sidebar-toggle ng-click="toggle('mainSidebar')"
+        i.fa.fa-bars
+        |  Menu
+  .app-body
+    ng-view.app-content: ui-view

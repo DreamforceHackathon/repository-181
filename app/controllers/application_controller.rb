@@ -9,4 +9,9 @@ class ApplicationController < ActionController::Base
     @mamr = Charter::IndividualMamr.new(analyzer)
     @range_mamr = Charter::RangeMamr.new(analyzer)
   end
+
+  layout "angular", only: [:index]
+
+  def index
+  end
 end

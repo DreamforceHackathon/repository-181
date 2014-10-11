@@ -1,0 +1,52 @@
+/*
+ *= require font-awesome
+ *= require mobile-angular-ui/dist/css/mobile-angular-ui-hover.min.css
+ *= require mobile-angular-ui/dist/css/mobile-angular-ui-base.min.css
+ *= require mobile-angular-ui/dist/css/mobile-angular-ui-desktop.min.css
+ *= require pnotify
+ */
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400);
+@import "mixins";
+@import "overrides";
+
+html, body, h1, h2, h3, h4, h5, h6  {
+  font-family: 'Open Sans', sans-serif !important;
+  font-weight: 300;
+}
+
+.app {
+  background: url("/bg.png");
+  color: white;
+}
+
+#get-started {
+  .content {
+    font-size: 16px;
+  }
+
+  .top {
+    background: none;
+    margin-bottom: 0px;
+  }
+
+  .actions {
+    padding: 10px;
+
+    button {
+      margin-bottom: 15px;
+
+      &.btn-primary {
+        height: 90px;
+        font-size: 1.5em;
+      }
+    }
+  }
+}
+
+#sign-up {
+  padding: 15px;
+  font-size: 1.2em;
+
+  form {
+  }
+}

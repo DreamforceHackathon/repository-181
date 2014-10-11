@@ -1,0 +1,26 @@
+div content-for="title" Sign Up
+
+#sign-up
+  p
+    ' You're on your way to actionable insights. Just fill out some info so we can get started.
+
+  form
+    .form-group
+      input.form-control type="text" ng-model="details.name" placeholder="What is your name?" required=true
+    .form-group
+      input.form-control type="text" ng-model="details.organization" placeholder="Who do you work for?" required=true
+    .form-group
+      .col-xs-1: input#sfdc type="checkbox" ng-model="details.sfdc"
+      .col-xs-10: label for="sfdc" Will you track SFDC Processes?
+
+    .no-sfdc ng-if="!details.sfdc"
+      .form-group
+        input.form-control type="text" ng-model="details.email" placeholder="What is your email?" required=true
+      .form-group
+        input.form-control type="text" ng-model="details.password" placeholder="Finally, enter a password" required=true
+
+    .with-sfdc ng-show="details.sfdc"
+      p We're going to use your SFDC information. So you don't need to provide an email or pass!
+
+    .form-controls
+      button.btn.btn-primary.btn-block.btn-lg Next
