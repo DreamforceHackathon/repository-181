@@ -2,5 +2,6 @@
 
 FactoryGirl.define do
   factory :sequence do
+    title "A Sequence"
   end
 end

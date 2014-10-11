@@ -14,16 +14,18 @@
 ActiveRecord::Schema.define(version: 20141011021847) do
 
   create_table "entries", force: true do |t|
-    t.datetime "point_time"
-    t.float    "point_value"
+    t.datetime "point_time",  null: false
+    t.float    "point_value", null: false
     t.integer  "sequence_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "entries", ["point_time"], name: "index_entries_on_point_time"
   add_index "entries", ["sequence_id"], name: "index_entries_on_sequence_id"
 
   create_table "sequences", force: true do |t|
+    t.string   "title",      null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

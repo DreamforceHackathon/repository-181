@@ -1,6 +1,6 @@
 class EntriesController < ApiController
   def index
-    respond_with sequence, entries
+    respond_with sequence, entries.order(point_time: :asc)
   end
 
   def show
@@ -9,6 +9,10 @@ class EntriesController < ApiController
 
   def create
     respond_with sequence, entries.create(entry_params.merge(point_time: compute_time))
+  end
+
+  def destroy
+    respond_with sequence, entry.destroy
   end
 
   private

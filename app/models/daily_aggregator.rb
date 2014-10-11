@@ -1,4 +1,6 @@
 class DailyAggregator
+
+  # [ { date:, :val } , ... ]
   def initialize(points)
     @points = points
   end

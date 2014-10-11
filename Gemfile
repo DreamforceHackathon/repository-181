@@ -8,6 +8,8 @@ gem 'rails', '4.1.6'
 
 gem 'dotenv-rails'
 
+gem 'active_model_serializers'
+
 # db
 gem 'sqlite3'
 
