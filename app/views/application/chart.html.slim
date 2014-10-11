@@ -1,60 +1,6 @@
 #mamr
+#range-mamr
 
 javascript:
-  $('#mamr').highcharts({
-    title: {
-      text: 'Individuals MaMR Chart',
-      x: -20 //center
-    },
-    yAxis: {
-      title: {
-        text: 'Value'
-      },
-      min: #{@mamr.lcl},
-      max: #{@mamr.ucl},
-      plotLines: [
-        {
-          color: 'black',
-          value: #{@mamr.cl},
-          width: 3
-        },
-        {
-          color: 'green',
-          value: #{@mamr.cl_step(1)},
-          width: 1
-        },
-        {
-          color: 'green',
-          value: #{@mamr.cl_step(-1)},
-          width: 1
-        },
-        {
-          color: 'yellow',
-          value: #{@mamr.cl_step(2)},
-          width: 1
-        },
-        {
-          color: 'yellow',
-          value: #{@mamr.cl_step(-2)},
-          width: 1
-        },
-        {
-          color: 'red',
-          value: #{@mamr.ucl},
-          width: 1
-        },
-        {
-          color: 'red',
-          value: #{@mamr.lcl},
-          width: 1
-        }
-      ]
-    },
-
-    series: [
-      {
-        name: '#{@sequence.title}',
-        data: #{@mamr.values.html_safe}
-      }
-    ]
-  });
+  $('#mamr').highcharts(#{@mamr.to_highcharts.html_safe});
+  $('#range-mamr').highcharts(#{@range_mamr.to_highcharts.html_safe});

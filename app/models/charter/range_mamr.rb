@@ -1,4 +1,4 @@
-class Charter::IndividualMamr # Moving Average Moving Range
+class Charter::RangeMamr
   attr_reader :analyzer, :title
 
   def initialize(analyzer, title: "")
@@ -7,7 +7,7 @@ class Charter::IndividualMamr # Moving Average Moving Range
   end
 
   def cl
-    analyzer.mean
+    analyzer.mean_range
   end
 
   def cl_step(amount)
@@ -15,15 +15,15 @@ class Charter::IndividualMamr # Moving Average Moving Range
   end
 
   def ucl
-    cl + 2.66 * analyzer.mean_range
+    cl + 3.267 * analyzer.mean_range
   end
 
   def lcl
-    cl - 2.66 * analyzer.mean_range
+    0
   end
 
   def values
-    analyzer.data.to_a
+    analyzer.ranges.to_a
   end
 
   def to_highcharts
@@ -39,8 +39,8 @@ class Charter::IndividualMamr # Moving Average Moving Range
   def highcharts_formatted_json
     {
       title: {
-          text: 'Individuals MaMR Chart',
-          x: -20 # center
+        text: 'Range MaMR Chart',
+        x: -20 # center
       },
       yAxis: {
         title: {
@@ -48,28 +48,11 @@ class Charter::IndividualMamr # Moving Average Moving Range
         },
         min: lcl,
         max: ucl,
-        plotLines: [
-            {
-                color: 'black',
-                value: cl,
-                width: 3
-            },
-            {
-                color: '#a94442',
-                value: ucl,
-                width: 1
-            },
-            {
-                color: '#a94442',
-                value: lcl,
-                width: 1
-            }
-        ],
         plotBands: [
           {
             color: '#dff0d8',
             from: cl_step(1),
-            to: cl_step(-1)
+            to: lcl
           },
           {
             color: '#fcf8e3',
@@ -77,19 +60,9 @@ class Charter::IndividualMamr # Moving Average Moving Range
             to: cl_step(2)
           },
           {
-            color: '#fcf8e3',
-            from: cl_step(-1),
-            to: cl_step(-2)
-          },
-          {
             color: '#f2dede',
             from: cl_step(2),
             to: cl_step(3)
-          },
-          {
-            color: '#f2dede',
-            from: cl_step(-2),
-            to: cl_step(-3)
           }
         ]
       },

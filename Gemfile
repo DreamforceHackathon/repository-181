@@ -17,8 +17,10 @@ gem 'sqlite3'
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
-
 gem 'slim-rails'
+
+gem 'paperclip'
+gem 'aws-sdk', '~> 1.34'
 
 group :development do
   gem 'spring-commands-rspec'

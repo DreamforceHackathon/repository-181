@@ -7,5 +7,6 @@ class ApplicationController < ActionController::Base
     @sequence = Sequence.first
     analyzer = Analyzer::Mamr.new(@sequence.daily_data)
     @mamr = Charter::IndividualMamr.new(analyzer)
+    @range_mamr = Charter::RangeMamr.new(analyzer)
   end
 end
