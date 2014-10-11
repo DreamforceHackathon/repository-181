@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141011153107) do
+ActiveRecord::Schema.define(version: 20141011163028) do
 
   create_table "chart_instances", force: true do |t|
     t.string   "image_file_name"
@@ -54,6 +54,8 @@ ActiveRecord::Schema.define(version: 20141011153107) do
     t.datetime "updated_at"
     t.string   "name"
     t.string   "organization"
+    t.string   "provider"
+    t.string   "uid"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

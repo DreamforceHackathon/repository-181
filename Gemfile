@@ -23,6 +23,7 @@ gem 'paperclip'
 gem 'aws-sdk', '~> 1.34'
 
 gem 'devise'
+gem 'omniauth-salesforce'
 
 group :development do
   gem 'spring-commands-rspec'

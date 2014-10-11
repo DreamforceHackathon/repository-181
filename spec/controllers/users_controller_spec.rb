@@ -36,7 +36,7 @@ RSpec.describe UsersController, :type => :controller do
 
     context "with a user" do
       it "has the user" do
-        sign_in(FactoryGirl.create(:user))
+        sign_in(FactoryGirl.create(:users))
         get :show
         expect(response_json).to include("id", "name", "organization")
         expect(response_json).not_to include("encrypted_password", "created_at")

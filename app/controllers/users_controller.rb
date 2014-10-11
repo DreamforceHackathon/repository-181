@@ -1,9 +1,8 @@
 class UsersController < ApiController
   def create
-    return redirect_to "http://www.google.com"
-    #user = User.create(user_params)
-    #sign_in(user) if user.persisted?
-    respond_with user
+    user = User.create(user_params)
+    sign_in(user) if user.persisted?
+    respond_with user, serializer: UserApiSerializer
   end
 
   def show

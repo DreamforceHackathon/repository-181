@@ -41,8 +41,17 @@ APP.config(function($stateProvider, $urlRouterProvider, $locationProvider, Resta
       url: '/signup',
       templateUrl: "signup/index.html",
       controller: "SignupController"
+    })
+    .state("dashboard", {
+      url: '/dash',
+      templateUrl: "dashboard.html",
+      controller: "DashboardController"
     });
 
   // This allows the user to have a proper history / browsing stack
   $locationProvider.html5Mode(true);
-});
+}).
+
+run(['CurrentUser', function(CurrentUser) {
+  CurrentUser.load();
+}]);

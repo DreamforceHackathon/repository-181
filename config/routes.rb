@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :users, only: [] # Devise throws a bitch fit if the devise_for isn't in place, even without routes
+  devise_for :users,
+             only: [:omniauth_callbacks],
+             controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 
   resources :sequences do
     resources :entries

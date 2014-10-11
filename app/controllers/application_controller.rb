@@ -13,5 +13,10 @@ class ApplicationController < ActionController::Base
   layout "angular", only: [:index]
 
   def index
+    puts flash.inspect
+  end
+
+  def new_session_path(scope)
+    "/"
   end
 end
