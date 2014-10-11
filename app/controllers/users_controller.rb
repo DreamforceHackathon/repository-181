@@ -19,6 +19,11 @@ class UsersController < ApiController
     render json: true
   end
 
+  def configure_sfdc
+    current_user.update_attributes(sfdc_config: params[:sfdc_config], sfdc_setup: true)
+    respond_with current_user
+  end
+
   private
 
   def user_params

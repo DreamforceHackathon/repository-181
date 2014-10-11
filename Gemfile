@@ -11,7 +11,7 @@ gem 'dotenv-rails'
 gem 'active_model_serializers'
 
 # db
-gem 'sqlite3'
+gem 'pg'
 
 # front end
 gem 'sass-rails', '~> 4.0.3'

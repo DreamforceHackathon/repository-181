@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resource :user do
     member do
       get 'logout'
+      post 'configure_sfdc'
     end
   end
 

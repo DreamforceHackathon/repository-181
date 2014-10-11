@@ -4,25 +4,42 @@ APP.service("CurrentUser", ['Restangular', '$state', '$window', function(Restang
 
     load: function() {
       Restangular.one("user").get().then(function(user) {
-        CurrentUser.user = user;
-        $state.go('dashboard');
+        setUser(user);
       }, function(error) {
         if (error.status == 404) {
-          CurrentUser.user = null;
-          $state.go('home');
+          setUser(null)
         }
       });
     },
 
     logout: function() {
       Restangular.one("user").customGET("logout").then(function() {
-        CurrentUser.user = null;
-        $state.go('home');
+        setUser(null);
       });
     },
 
     login: function() {
       $window.location.href = "<%= Rails.application.routes.url_helpers.user_omniauth_authorize_path(provider: "salesforce") %>";
+    },
+
+    saveSFDCSettings: function() {
+      Restangular.one("user").customPOST(CurrentUser.user, "configure_sfdc").then(function(user) {
+        setUser(user);
+      });
+    }
+  };
+
+  function setUser(user) {
+    if (user == null) {
+      CurrentUser.user = null;
+      $state.go('home');
+    } else {
+      CurrentUser.user = user;
+      if (!user.sfdc_setup) {
+        $state.go('sfdc_config');
+      } else if($state.current.name == "home") {
+        $state.go('dashboard');
+      }
     }
   };
 

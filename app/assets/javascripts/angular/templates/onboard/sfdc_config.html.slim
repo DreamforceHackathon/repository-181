@@ -1,0 +1,12 @@
+div content-for="title" SFDC Setup
+
+#sfdc-config
+  form ng-submit="CurrentUser.saveSFDCSettings()"
+    p Select the SFDC metrics you would like to track:
+
+    .form-controls.row ng-repeat="(name, value) in CurrentUser.user.sfdc_config"
+      .col-xs-1: input type="checkbox" ng-model="CurrentUser.user.sfdc_config[name]"
+      .col-xs-10: label {{ name | titleCase }}
+
+    .margin-top After submitting, 3 months worth of data will be backfilled for immediate analysis.
+    button.btn.btn-primary.btn-block.btn-lg Make it so!

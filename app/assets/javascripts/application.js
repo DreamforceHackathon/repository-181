@@ -39,8 +39,13 @@ APP.config(function($stateProvider, $urlRouterProvider, $locationProvider, Resta
     })
     .state("signup", {
       url: '/signup',
-      templateUrl: "signup/index.html",
+      templateUrl: "onboard/signup.html",
       controller: "SignupController"
+    })
+    .state("sfdc_config", {
+      url: '/sfdc-config',
+      templateUrl: "onboard/sfdc_config.html",
+      controller: "SFDCSetupController"
     })
     .state("dashboard", {
       url: '/dash',
