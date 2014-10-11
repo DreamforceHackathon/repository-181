@@ -5,8 +5,7 @@ class ApplicationController < ActionController::Base
 
   def chart
     @sequence = Sequence.first
-    analyzer = Analyzer::Flat.new(@sequence.daily_data)
-    @sbar = Charter::Sbar.new(analyzer)
-    @xbar = Charter::Xbar.new(analyzer)
+    analyzer = Analyzer::Mamr.new(@sequence.daily_data)
+    @mamr = Charter::IndividualMamr.new(analyzer)
   end
 end
