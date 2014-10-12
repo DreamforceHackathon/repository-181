@@ -39,13 +39,17 @@ class Charter::RangeMamr
       date = pair[0]
       value = pair[1]
       if value > ucl
-        h[date] = value
+        h[date] = value_for(date)
       end
       h
     end
   end
 
   private
+
+  def value_for(date)
+    analyzer.data[date]
+  end
 
   def highcharts_formatted_json
     {
