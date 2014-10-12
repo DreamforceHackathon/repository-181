@@ -16,6 +16,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       user.sfdc_refresh_token = auth.credentials.refresh_token
       user.provider = auth.provider
       user.uid = auth.uid
+      user.email = auth.info.email if user.email.blank?
       user.name = auth.info.name if user.name.blank?
       user.save
     end

@@ -25,6 +25,10 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'slim-rails'
 
+gem 'premailer-rails', '1.7.0'
+gem 'nokogiri'
+
+
 gem 'paperclip'
 gem 'aws-sdk', '~> 1.34'
 
