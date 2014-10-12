@@ -10,8 +10,8 @@ class SequencesController < ApiController
 
   def chart
     analyzer = Analyzer::Mamr.new(sequence.daily_data)
-    range_mamr = Charter::RangeMamr.new(analyzer)
-    indiv_mamr = Charter::IndividualMamr.new(analyzer)
+    range_mamr = Charter::RangeMamr.new(analyzer, sequence.title)
+    indiv_mamr = Charter::IndividualMamr.new(analyzer, sequence.title)
     renderer = Charter::ServerRender.new(input: indiv_mamr.to_highcharts, width: 900)
 
     chart = current_user.chart_instances.create!(image: renderer.file)
