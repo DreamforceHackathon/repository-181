@@ -14,7 +14,7 @@ class SequencesController < ApiController
     indiv_mamr = Charter::IndividualMamr.new(analyzer)
     renderer = Charter::ServerRender.new(input: indiv_mamr.to_highcharts, width: 900)
 
-    chart = ChartInstance.create!(image: renderer.file)
+    chart = current_user.chart_instances.create!(image: renderer.file)
     renderer.close
 
     render json: { url: chart.image.url }
