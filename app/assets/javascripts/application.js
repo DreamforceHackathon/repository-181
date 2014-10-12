@@ -39,6 +39,10 @@ APP.config(["$stateProvider", "$urlRouterProvider", "$locationProvider", "Restan
       url: '/',
       templateUrl: "index.html"
     })
+    .state("help", {
+      url: '/help',
+      templateUrl: "help.html"
+    })
     .state("signup", {
       url: '/signup',
       templateUrl: "onboard/signup.html",
