@@ -281,10 +281,10 @@
 
                 <% if charts[:out_of_control].size > 0 %>
                   <div class="callout">
-                    Oh no! It looks like your <%= sequence.title %> process is out of control. These data points are the
-                    culprits:
+                    Oh no! It looks like your <%= sequence.title %> process is out of control. Here are some
+                    culprit data points:
                     <table>
-                      <% charts[:out_of_control].each do |date, value| %>
+                      <% charts[:out_of_control].take(5).each do |date, value| %>
                       <tr>
                         <td><%= date %></td>
                         <td><%= value %></td>
