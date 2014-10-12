@@ -1,2 +1,2 @@
 web:    bundle exec puma -p $PORT
-worker:	bundle exec sidekiq --concurrency 3
+worker:	bundle exec sidekiq --concurrency 2

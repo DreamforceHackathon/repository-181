@@ -1,5 +1,3 @@
-if Rails.env.production?
+if Rails.env.production?g
   $redis = Redis.connect(url: ENV["REDISTOGO_URL"])
-  Sidekiq.configure_client { |config| config.redis = $redis }
-  Sidekiq.configure_server { |config| config.redis = $redis }
 end
