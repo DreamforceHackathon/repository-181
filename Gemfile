@@ -28,6 +28,7 @@ gem 'slim-rails'
 gem 'premailer-rails', '1.7.0'
 gem 'nokogiri'
 
+gem 'seed_dump'
 
 gem 'paperclip'
 gem 'aws-sdk', '~> 1.34'
