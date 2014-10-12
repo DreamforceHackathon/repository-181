@@ -270,8 +270,9 @@
           <tr>
             <td>
 
-              <h3>Welcome, <%= @user.name %></h3>
-              <p class="lead">Here is your daily report with InControl Process Monitoring.</p>
+              <h3>Stay In Control <small>Make decisions confidently.</small></h3>
+              <p><%= @user.name %>, everyday we will send you these emails. You can view your data any day at our website.</p>
+              <a class="btn" href="<%= root_url %>">Take me there!</a>
 
               <% @charts.each do |sequence, charts| %>
                 <h2><%= sequence.title %></h2>
@@ -298,10 +299,6 @@
                   </div>
                 <% end %>
               <% end %>
-
-              <h3>Stay In Control <small>Make decisions confidently.</small></h3>
-              <p>Every day, we will send you these emails. You can view your data any day at our website.</p>
-              <a class="btn" href="<%= root_url %>">Take me there!</a>
 
               <br/>
               <br/>
