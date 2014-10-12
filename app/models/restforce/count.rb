@@ -27,7 +27,7 @@ class Restforce::Count
   end
 
   def time_filter(time)
-    "WHERE CreatedAt > #{time.beginning_of_day.iso8601} AND CreatedAt < #{time.end_of_day.iso8601}"
+    "WHERE CreatedDate > #{time.beginning_of_day.iso8601} AND CreatedDate < #{time.end_of_day.iso8601}"
   end
 
   # For all of the basic collections that use this count interface, define their classes
