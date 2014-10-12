@@ -30,6 +30,97 @@ class Charter::IndividualMamr # Moving Average Moving Range
     highcharts_formatted_json if values.any?
   end
 
+  # I'm not proud of this. It's 32 hours in.
+  def out_of_control_points
+    points_2_3_above = []
+    points_2_3_below = []
+    points_4_5_above = []
+    points_4_5_below = []
+    points_8_above = []
+    points_8_below = []
+
+    values.inject({}) do |h, pair|
+      date = pair.first
+      value = pair.last
+
+      if value > ucl
+        h[date] = value
+      end
+
+      if value < lcl
+        h[date] = value
+      end
+
+      if value > cl + cl_step_size * 2
+        points_2_3_above << pair
+        if points_2_3_above.size >= 2
+          points_2_3_above.each do |dv|
+            h[dv.first] = dv.last
+          end
+        end
+      else
+        points_2_3_above.clear
+      end
+
+      if value < cl - cl_step_size * 2
+        points_2_3_below << pair
+        if points_2_3_below.size >= 2
+          points_2_3_below.each do |dv|
+            h[dv.first] = dv.last
+          end
+        end
+      else
+        points_2_3_below.clear
+      end
+
+      if value > cl + cl_step_size * 1
+        points_4_5_above << pair
+        if points_4_5_above.size >= 4
+          points_4_5_above.each do |dv|
+            h[dv.first] = dv.last
+          end
+        end
+      else
+        points_4_5_above.clear
+      end
+
+      if value < cl - cl_step_size * 1
+        points_4_5_below << pair
+        if points_4_5_below.size >= 4
+          points_4_5_below.each do |dv|
+            h[dv.first] = dv.last
+          end
+        end
+      else
+        points_4_5_below.clear
+      end
+
+      if value > cl
+        points_8_above << pair
+        if points_8_above.size >= 8
+          points_8_above.each do |dv|
+            h[dv.first] = dv.last
+          end
+        end
+      else
+        points_8_above.clear
+      end
+
+      if value < cl
+        points_8_below << pair
+        if points_8_below.size >= 8
+          points_8_below.each do |dv|
+            h[dv.first] = dv.last
+          end
+        end
+      else
+        points_8_below.clear
+      end
+
+      h
+    end
+  end
+
   private
 
   def cl_step_size

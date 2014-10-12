@@ -17,7 +17,7 @@ class SequenceSerializer < ActiveModel::Serializer
     {
       mamr: {
         chart: mamr.to_highcharts,
-        out_of_control: {}
+        out_of_control: mamr.out_of_control_points
       },
       range_mamr: {
         chart: range_mamr.to_highcharts,
