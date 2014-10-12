@@ -1,4 +1,4 @@
-angular.module('templates', []).run(function($templateCache) {
+angular.module('templates', []).run(['$templateCache', function($templateCache) {
   <%
     environment.context_class.instance_eval { include ActionView::Helpers::JavaScriptHelper }
     app_root  = File.expand_path('../../angular', __FILE__)
@@ -11,4 +11,4 @@ angular.module('templates', []).run(function($templateCache) {
   %>
   $templateCache.put("<%= key %>", "<%= escape_javascript(content) %>");
   <% end %>
-});
+}]);

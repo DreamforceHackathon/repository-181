@@ -28,7 +28,8 @@ var APP = angular.module('Incontrol', [
   'ngAnimate'
 ]);
 
-APP.config(function($stateProvider, $urlRouterProvider, $locationProvider, RestangularProvider) {
+APP.config(["$stateProvider", "$urlRouterProvider", "$locationProvider", "RestangularProvider",
+             function($stateProvider, $urlRouterProvider, $locationProvider, RestangularProvider) {
   RestangularProvider.setRequestSuffix(".json");
 
   $urlRouterProvider.otherwise("/");
@@ -56,7 +57,7 @@ APP.config(function($stateProvider, $urlRouterProvider, $locationProvider, Resta
 
   // This allows the user to have a proper history / browsing stack
   $locationProvider.html5Mode(true);
-}).
+}]).
 
 run(['CurrentUser', '$rootScope', function(CurrentUser, $rootScope) {
   CurrentUser.load();
