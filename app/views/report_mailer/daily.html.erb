@@ -271,8 +271,9 @@
             <td>
 
               <h3>Stay In Control <small>Make decisions confidently.</small></h3>
-              <p><%= @user.name %>, everyday we will send you these emails. You can view your data any day at our website.</p>
-              <a class="btn" href="<%= root_url %>">Take me there!</a>
+              <p>
+                <%= @user.name %>, everyday we will send you these emails. You can view your data any day at our
+                <a href="<%= root_url %>">website</a>.</p>
 
               <div class="callout">
                 <p>To read these charts, first look at the range chart. If points are out of control on it, then
