@@ -4,6 +4,6 @@ Sean is a sales team lead who has a team of growing SDRs under him. He is tasked
 
 Originally developed at Salesforce Hackathon, this app allows for the tracking of SFDC metrics using control charts. Receive daily updates with charts in your emails alerting you to out of control processes.
 
-Featuring one click deploy to Heroku. You will need several environmental variables which will be outlined in the process. You also need to configure your SFDC application to have the correct callback url.
+Featuring one click deploy to Heroku. You will need several environmental variables which will be outlined in the process. You also need to configure your SFDC application to have the correct callback url. You will need to add a worker dyno in order for sidekiq to run.
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/DreamforceHackathon/repository-181)
