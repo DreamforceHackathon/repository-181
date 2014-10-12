@@ -17,6 +17,7 @@ gem 'sidekiq'
 
 # db
 gem 'pg'
+gem 'redis'
 
 # front end
 gem 'sass-rails', '~> 4.0.3'
