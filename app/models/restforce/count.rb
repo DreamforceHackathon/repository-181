@@ -4,7 +4,14 @@ class Restforce::Count
   end
 
   def count_on_day(time)
-    query = @user.restforce.query("SELECT COUNT() FROM #{collection_name} " + time_filter(time))
+    query = "SELECT COUNT() FROM #{collection_name} "
+    if collection_name == "Lead"
+      query = query + time_filter_lead(time)
+    else
+      query = query + time_filter(time)
+    end
+
+    query = @user.restforce.query(query)
     Rails.logger.info query
     query.size
   end
@@ -15,8 +22,12 @@ class Restforce::Count
 
   private
 
-  def time_filter(time)
+  def time_filter_lead(time)
     "WHERE Demo_CreatedAt__c > #{time.beginning_of_day.iso8601} AND Demo_CreatedAt__c < #{time.end_of_day.iso8601}"
+  end
+
+  def time_filter(time)
+    "WHERE CreatedAt > #{time.beginning_of_day.iso8601} AND CreatedAt < #{time.end_of_day.iso8601}"
   end
 
   # For all of the basic collections that use this count interface, define their classes
