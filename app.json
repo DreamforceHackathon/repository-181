@@ -11,10 +11,10 @@
     "MIN_THREADS": "1",
     "MAX_THREADS": "1",
     "AWS_ACCESS_KEY_ID": {
-      "description": "An S3 access key for uploading images"
+      "description": "An AWS access key for uploading images"
     },
     "AWS_SECRET_ACCESS_KEY": {
-      "description": "An S3 secret key for uploading images"
+      "description": "An AWS secret key for uploading images"
     },
     "S3_BUCKET_NAME": {
       "description": "S3 bucket name for uploading images",
