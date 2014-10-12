@@ -36,7 +36,7 @@ gem 'aws-sdk', '~> 1.34'
 gem 'foreman'
 
 gem 'devise'
-gem 'omniauth-salesforce'
+gem 'omniauth-salesforce', git: "https://github.com/sb8244/omniauth-salesforce"
 
 gem 'restforce', git: "https://github.com/crisply/restforce"
 
