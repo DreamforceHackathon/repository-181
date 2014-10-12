@@ -1,1 +1,11 @@
-| hi
+div content-for="title" Dashboard
+
+#dashboard.scrollable
+  .scrollable-content
+    .sequence ng-repeat="sequence in sequences"
+      .col-xs-12: h2 {{sequence.title}}
+      .col-xs-12.col-sm-6.charter
+        highchart config="sequence.charts.range_mamr" sequence="sequence" ng-if="sequence.charts.range_mamr"
+
+      .col-xs-12.col-sm-6.charter
+        highchart config="sequence.charts.mamr" sequence="sequence" ng-if="sequence.charts.mamr"

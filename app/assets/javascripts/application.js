@@ -15,6 +15,7 @@
  = require mobile-angular-ui/dist/js/mobile-angular-ui.min.js
 
  = require_self
+ = require ./highstock
  = require_tree ./angular/templates
  = require_tree ./angular
  */

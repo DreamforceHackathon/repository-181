@@ -17,7 +17,7 @@ class Analyzer::Mamr
         h[slice.first.first] = (v1-v2).abs
       end
 
-      h.sort.reverse.to_h
+      h.sort.to_h
     end
   end
 

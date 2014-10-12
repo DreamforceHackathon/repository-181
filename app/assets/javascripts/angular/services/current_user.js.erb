@@ -1,4 +1,4 @@
-APP.service("CurrentUser", ['Restangular', '$state', '$window', function(Restangular, $state, $window) {
+APP.service("CurrentUser", ['Restangular', '$state', '$window', 'Notify', function(Restangular, $state, $window, Notify) {
   var CurrentUser = {
     user: null,
 
@@ -25,6 +25,7 @@ APP.service("CurrentUser", ['Restangular', '$state', '$window', function(Restang
     saveSFDCSettings: function() {
       Restangular.one("user").customPOST(CurrentUser.user, "configure_sfdc").then(function(user) {
         setUser(user);
+        Notify.success("Nice!", "Your SFDC Settings are saved. 3 months of data is being backfilled now!");
       });
     }
   };

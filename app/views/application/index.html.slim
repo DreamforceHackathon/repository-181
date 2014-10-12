@@ -7,11 +7,13 @@
         a.list-group-item ng-click="CurrentUser.logout()"
           | Logout
           i.fa.fa-chevron-right.pull-right
+
+        a.list-group-item ui-sref="dashboard"
+          | Charts
+          i.fa.fa-chevron-right.pull-right
+
         a.list-group-item ui-sref="sfdc_config"
           | Configure SFDC Metrics
-          i.fa.fa-chevron-right.pull-right
-        a.list-group-item
-          | Setup Sequence
           i.fa.fa-chevron-right.pull-right
 .app
   .navbar.navbar-app.navbar-absolute-top

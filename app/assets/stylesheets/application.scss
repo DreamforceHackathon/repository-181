@@ -16,7 +16,9 @@ html, body, h1, h2, h3, h4, h5, h6  {
 
 .app {
   background: url("/bg.png");
+  background-size: cover;
   color: white;
+  overflow: hidden;
 }
 
 .margin-top {
@@ -58,4 +60,17 @@ html, body, h1, h2, h3, h4, h5, h6  {
 #sfdc-config {
   padding: 15px;
   font-size: 1.2em;
+}
+
+#dashboard {
+  .sequence {
+    h2 {
+      margin: 0;
+      padding: 5px;
+    }
+  }
+
+  .charter {
+    margin-bottom: 5px;
+  }
 }

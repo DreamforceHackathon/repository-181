@@ -1,11 +1,11 @@
 class SequencesController < ApiController
   before_filter :authenticate_user!
   def index
-    respond_with sequences
+    respond_with sequences.where(active: true), charts: true
   end
 
   def show
-    respond_with sequence, serializer: SequenceDataSerializer
+    respond_with sequence, charts: true
   end
 
   def chart
