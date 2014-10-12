@@ -42,7 +42,9 @@ APP.service("CurrentUser", ['Restangular', '$state', '$window', 'Notify', functi
       $state.go('home');
     } else {
       CurrentUser.user = user;
-      if (!user.sfdc_setup) {
+      if (!user.sfdc_keys) {
+        CurrentUser.login();
+      } else if (!user.sfdc_setup) {
         $state.go('sfdc_config');
       } else if($state.current.name == "home") {
         $state.go('dashboard');
