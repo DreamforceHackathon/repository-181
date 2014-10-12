@@ -68,6 +68,13 @@ RSpec.describe UsersController, :type => :controller do
       expect(user.sequences.last.processor).to eq("Processor::Lead")
     end
 
+    it "creates workers" do
+      expect {
+        post :configure_sfdc, sfdc_config: { leads: true }
+      }.to change{ SequenceWorker::jobs.size }.by(90)
+
+    end
+
     it "creates many sequences" do
       expect {
         post :configure_sfdc, sfdc_config: { leads: true, contacts: true }

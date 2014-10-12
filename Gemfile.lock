@@ -77,6 +77,9 @@ GEM
       multipart-post (>= 1.2, < 3)
     faraday_middleware (0.9.1)
       faraday (>= 0.7.4, < 0.10)
+    foreman (0.63.0)
+      dotenv (>= 0.7)
+      thor (>= 0.13.6)
     hashie (3.2.0)
     hike (1.2.3)
     i18n (0.6.11)
@@ -119,7 +122,11 @@ GEM
       cocaine (~> 0.5.3)
       mime-types
     pg (0.17.1)
+    puma (2.9.1)
+      rack (>= 1.1, < 2.0)
     rack (1.5.2)
+    rack-protection (1.5.3)
+      rack
     rack-test (0.6.2)
       rack (>= 1.0)
     rails (4.1.6)
@@ -169,6 +176,10 @@ GEM
       json
       redis (>= 3.0.6)
       redis-namespace (>= 1.3.1)
+    sinatra (1.4.5)
+      rack (~> 1.4)
+      rack-protection (~> 1.4)
+      tilt (~> 1.3, >= 1.3.4)
     slim (2.0.3)
       temple (~> 0.6.6)
       tilt (>= 1.3.3, < 2.1)
@@ -212,15 +223,18 @@ DEPENDENCIES
   dotenv-rails
   factory_girl_rails
   faker
+  foreman
   jquery-rails
   omniauth-salesforce
   paperclip
   pg
+  puma
   rails (= 4.1.6)
   restforce!
   rspec-rails (~> 3.0.0)
   sass-rails (~> 4.0.3)
   sidekiq
+  sinatra (>= 1.3.0)
   slim-rails
   spring-commands-rspec
   uglifier (>= 1.3.0)

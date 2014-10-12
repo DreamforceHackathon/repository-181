@@ -1,11 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe SequencesController, type: :controller do
-
+  let(:user) { FactoryGirl.create(:user) }
   before(:each) { request.env["HTTP_ACCEPT"] = 'application/json' }
+  before(:each) { sign_in(user) }
 
   describe 'show' do
-    let!(:sequence) { FactoryGirl.create(:sequence) }
+    let!(:sequence) { FactoryGirl.create(:sequence, user: user) }
 
     it "shows the sequence" do
       get :show, id: sequence.id

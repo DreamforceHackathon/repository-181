@@ -1,4 +1,9 @@
 class SequencesController < ApiController
+  before_filter :authenticate_user!
+  def index
+    respond_with sequences
+  end
+
   def show
     respond_with sequence, serializer: SequenceDataSerializer
   end
@@ -18,7 +23,7 @@ class SequencesController < ApiController
   private
 
   def sequences
-    @sequences ||= Sequence.all
+    @sequences ||= current_user.sequences
   end
 
   def sequence

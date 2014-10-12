@@ -8,7 +8,7 @@ class Processor
   def call!
     if user.restforce && sequence.try!(:active?)
       sequence.entries.where(source: "processor", point_time: date.beginning_of_day..date.end_of_day).destroy_all
-      sequence.entries.create!(point_time: date.to_date, point_value: count, source: "processor")
+      sequence.entries.create!(point_time: date.beginning_of_day + 1.minute, point_value: count, source: "processor")
     end
   end
 

@@ -4,7 +4,9 @@ class Restforce::Count
   end
 
   def count_on_day(time)
-    @user.restforce.query("SELECT COUNT() FROM #{collection_name} " + time_filter(time)).size
+    query = @user.restforce.query("SELECT COUNT() FROM #{collection_name} " + time_filter(time))
+    Rails.logger.info query
+    query.size
   end
 
   def collection_name

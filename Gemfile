@@ -3,8 +3,11 @@ source 'https://rubygems.org'
 # ruby
 ruby '2.1.2'
 
+gem 'puma'
+
 # rails
 gem 'rails', '4.1.6'
+gem 'sinatra', '>= 1.3.0', :require => nil
 
 gem 'dotenv-rails'
 
@@ -23,6 +26,8 @@ gem 'slim-rails'
 
 gem 'paperclip'
 gem 'aws-sdk', '~> 1.34'
+
+gem 'foreman'
 
 gem 'devise'
 gem 'omniauth-salesforce'

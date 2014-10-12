@@ -36,7 +36,8 @@ class UsersController < ApiController
   SequenceCreator = Struct.new(:user, :type) do
     def call!
       if user.sfdc_config[type]
-        create_sequence!
+        sequence = create_sequence!
+        create_workers(sequence)
       else
         disable_sequence!
       end
@@ -57,11 +58,21 @@ class UsersController < ApiController
     end
 
     def create_sequence!
-      user.sequences.where(processor: processor).first_or_create!(title: "SFDC #{name}")
+      user.sequences.where(processor: processor).first_or_create!(title: "SFDC #{name}").tap do |sequence|
+        sequence.update!(active: true)
+      end
     end
 
     def disable_sequence!
       sequence.update!(active: false) if sequence
+    end
+
+    def create_workers(sequence)
+      89.times do |i|
+        SequenceWorker.perform_async(sequence.id, Time.now - (i+2).days, false)
+      end
+
+      SequenceWorker.perform_async(sequence.id, Time.now - 1.days, true)
     end
   end
 end
