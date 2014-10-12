@@ -75,8 +75,4 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-
-  $redis = Redis.connect(url: ENV["REDISTOGO_URL"])
-  Sidekiq.configure_client { |config| config.redis = $redis }
-  Sidekiq.configure_server { |config| config.redis = $redis }
 end
