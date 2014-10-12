@@ -25,7 +25,6 @@ APP.directive("highchart", function() {
           text: null
         }
       });
-      console.log(config);
     }
   }
 });

@@ -1,0 +1,11 @@
+.out-of-control
+  h4 Out of Control Points
+  table.table
+    thead: tr
+      th When
+      th Value
+      th
+    tr.point ng-repeat="(date, value) in points"
+      td {{ date | date: 'shortDate'}}
+      td {{ value }}
+      td: button.btn.btn-xs.btn-primary ng-click="ignore(date)" Ignore from All Charts

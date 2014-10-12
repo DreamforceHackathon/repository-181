@@ -22,6 +22,10 @@ class Charter::RangeMamr
     0
   end
 
+  def cl_step_size
+    @cl_step_size ||= (ucl - cl) / 3
+  end
+
   def values
     analyzer.ranges.to_a
   end
@@ -30,11 +34,18 @@ class Charter::RangeMamr
     highcharts_formatted_json if values.any?
   end
 
-  private
-
-  def cl_step_size
-    @cl_step_size ||= (ucl - cl) / 3
+  def out_of_control_points
+    values.inject({}) do |h,pair|
+      date = pair[0]
+      value = pair[1]
+      if value > ucl
+        h[date] = value
+      end
+      h
+    end
   end
+
+  private
 
   def highcharts_formatted_json
     {

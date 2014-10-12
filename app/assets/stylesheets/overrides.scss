@@ -2,6 +2,7 @@
 
 $primary: #EB7F00;
 $info: #1695A3;
+$warning: #F3FFE2;
 
 .btn-primary {
   @include override-button($primary);
@@ -9,4 +10,9 @@ $info: #1695A3;
 
 .btn-info {
   @include override-button($info);
+}
+
+.btn-warning {
+  @include override-button($warning);
+  color: black;
 }

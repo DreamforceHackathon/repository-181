@@ -17,6 +17,14 @@ class EntriesController < ApiController
     respond_with sequence, entry.destroy
   end
 
+  def ignore
+    time = Time.parse(params[:time])
+    entries = sequence.entries.where(point_time: time.beginning_of_day..time.end_of_day)
+    entries.update_all(ignored: true)
+
+    render json: entries
+  end
+
   private
 
   def sequence

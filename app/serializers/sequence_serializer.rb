@@ -11,9 +11,18 @@ class SequenceSerializer < ActiveModel::Serializer
 
   def charts
     analyzer = Analyzer::Mamr.new(object.daily_data)
+    mamr = Charter::IndividualMamr.new(analyzer)
+    range_mamr = Charter::RangeMamr.new(analyzer)
+
     {
-        mamr: Charter::IndividualMamr.new(analyzer).to_highcharts,
-        range_mamr: Charter::RangeMamr.new(analyzer).to_highcharts
+      mamr: {
+        chart: mamr.to_highcharts,
+        out_of_control: {}
+      },
+      range_mamr: {
+        chart: range_mamr.to_highcharts,
+        out_of_control: range_mamr.out_of_control_points
+      }
     }
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141011231407) do
+ActiveRecord::Schema.define(version: 20141012034449) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20141011231407) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "source",      default: "automatic", null: false
+    t.boolean  "ignored",     default: false,       null: false
   end
 
   add_index "entries", ["point_time"], name: "index_entries_on_point_time", using: :btree

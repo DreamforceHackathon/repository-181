@@ -4,7 +4,11 @@ Rails.application.routes.draw do
              controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 
   resources :sequences do
-    resources :entries
+    resources :entries do
+      collection do
+        post :ignore
+      end
+    end
 
     member do
       get 'chart'
