@@ -72,7 +72,30 @@ RSpec.describe UsersController, :type => :controller do
       expect {
         post :configure_sfdc, sfdc_config: { leads: true }
       }.to change{ SequenceWorker::jobs.size }.by(90)
+    end
 
+    context "with existing entries" do
+      let!(:sequence) { FactoryGirl.create(:sequence, user: user, processor: "Processor::Lead") }
+
+      context "with over 20" do
+        before(:each) { 30.times{ |i| sequence.entries.create!(point_time: i.days.ago, point_value: 5, source: "processor") } }
+
+        it "doesn't create workers" do
+          expect {
+            post :configure_sfdc, sfdc_config: { leads: true }
+          }.not_to change{ SequenceWorker::jobs.size }
+        end
+      end
+
+      context "with under 20" do
+        before(:each) { 19.times{ |i| sequence.entries.create!(point_time: i.days.ago, point_value: 5, source: "processor") } }
+
+        it "creates workers" do
+          expect {
+            post :configure_sfdc, sfdc_config: { leads: true }
+          }.to change{ SequenceWorker::jobs.size }
+        end
+      end
     end
 
     it "creates many sequences" do

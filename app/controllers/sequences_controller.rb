@@ -5,7 +5,7 @@ class SequencesController < ApiController
   end
 
   def show
-    respond_with sequence, charts: true
+    respond_with sequence, charts: true, daily_data: true
   end
 
   def chart

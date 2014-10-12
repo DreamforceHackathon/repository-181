@@ -37,7 +37,7 @@ class UsersController < ApiController
     def call!
       if user.sfdc_config[type]
         sequence = create_sequence!
-        create_workers(sequence)
+        create_workers(sequence) if new?
       else
         disable_sequence!
       end
@@ -47,6 +47,10 @@ class UsersController < ApiController
 
     def name
       User::SFDC_FIELDS[type.to_s]
+    end
+
+    def new?
+      sequence.entries.where(source: "processor", point_time: 30.days.ago..Time.now).count < 20
     end
 
     def processor
