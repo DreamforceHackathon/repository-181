@@ -25,7 +25,8 @@
     },
     "SALESFORCE_SECRET": {
       "description": "Your SFDC Secret"
-    }
+    },
+    "REDIS_PROVIDER": "REDISTOGO_URL"
   },
   "addons": [
     "redistogo",
