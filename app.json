@@ -8,8 +8,8 @@
   },
   "env": {
     "BUILDPACK_URL": "https://github.com/ddollar/heroku-buildpack-multi.git",
-    "MIN_THREADS": 1,
-    "MAX_THREADS": 1,
+    "MIN_THREADS": "1",
+    "MAX_THREADS": "1",
     "AWS_ACCESS_KEY_ID": {
       "description": "An S3 access key for uploading images"
     },
