@@ -77,4 +77,12 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.action_mailer.delivery_method = :smtp
+
+  config.action_mailer.delivery_method = :smtp
+
+  #fuckitshipit
+  config.action_mailer.default_url_options = {
+      host: 'young-shelf-1152.herokuapp.com',
+      port: 80
+  }
 end
