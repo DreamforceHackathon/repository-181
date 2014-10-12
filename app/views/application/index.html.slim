@@ -4,17 +4,23 @@
   .scrollable
     .scrollable-content
       .list-group bubble="" target="mainSidebar" toggle="off"
-        a.list-group-item ng-click="CurrentUser.logout()"
-          | Logout
-          i.fa.fa-chevron-right.pull-right
+        div ng-show="CurrentUser.user"
+          a.list-group-item ng-click="CurrentUser.logout()"
+            | Logout
+            i.fa.fa-chevron-right.pull-right
 
-        a.list-group-item ui-sref="dashboard"
-          | Charts
-          i.fa.fa-chevron-right.pull-right
+          a.list-group-item ui-sref="dashboard"
+            | Charts
+            i.fa.fa-chevron-right.pull-right
 
-        a.list-group-item ui-sref="sfdc_config"
-          | Configure SFDC Metrics
-          i.fa.fa-chevron-right.pull-right
+          a.list-group-item ui-sref="sfdc_config"
+            | Configure SFDC Metrics
+            i.fa.fa-chevron-right.pull-right
+
+        div ng-hide="CurrentUser.user"
+          a.list-group-item ui-sref="home"
+            | Get Started
+            i.fa.fa-chevron-right.pull-right
 .app
   .navbar.navbar-app.navbar-absolute-top
     .navbar-brand.navbar-brand-center yield-to="title"
