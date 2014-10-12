@@ -27,6 +27,12 @@ class UsersController < ApiController
     respond_with current_user
   end
 
+  def email
+    EmailWorker.perform_async(current_user.id)
+
+    render json: true
+  end
+
   private
 
   def user_params

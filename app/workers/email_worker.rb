@@ -3,6 +3,6 @@ class EmailWorker
 
   def perform(user_id)
     user = User.find(user_id)
-    user
+    ReportMailer.daily(user).deliver!
   end
 end

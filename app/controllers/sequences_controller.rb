@@ -1,7 +1,7 @@
 class SequencesController < ApiController
   before_filter :authenticate_user!
   def index
-    respond_with sequences.where(active: true).order(id: :asc), charts: true
+    respond_with sequences.where(active: true).order(processor: :asc, id: :asc), charts: true
   end
 
   def show

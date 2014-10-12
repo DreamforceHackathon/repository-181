@@ -27,6 +27,12 @@ APP.service("CurrentUser", ['Restangular', '$state', '$window', 'Notify', functi
         setUser(user);
         Notify.success("Nice!", "Your SFDC Settings are saved. 3 months of data is being backfilled now!");
       });
+    },
+
+    email: function() {
+      Restangular.one("user").customPOST({}, "email").then(function() {
+        Notify.success("Success", "It should be there within 5 minutes!")
+      });
     }
   };
 
