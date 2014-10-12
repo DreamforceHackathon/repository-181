@@ -1,5 +1,6 @@
 
 user = User.find_by(email: "steve.bussey@salesloft.com")
+user.update!(sfdc_setup: true, sfdc_config: {"leads"=>true, "contacts"=>false, "accounts"=>false, "activities"=>false, "opportunities"=>false})
 
 Sequence.destroy_all
 Entry.destroy_all
