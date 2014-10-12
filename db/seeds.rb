@@ -1,3 +1,19 @@
+
+user = User.find_by(email: "steve.bussey@salesloft.com")
+
+Sequence.destroy_all
+Entry.destroy_all
+
+Sequence.create!([
+   {title: "SFDC Contact", processor: "Processor::Contact", active: false, user_id: user.id},
+   {title: "SFDC Account", processor: "Processor::Account", active: false, user_id: user.id},
+   {title: "SFDC Task", processor: "Processor::Task", active: false, user_id: user.id},
+   {title: "SFDC Opportunity", processor: "Processor::Opportunity", active: false, user_id: user.id},
+   {title: "Generic Chart 2", processor: nil, active: true, user_id: user.id},
+   {title: "Generic Chart", processor: nil, active: true, user_id: user.id},
+   {title: "SFDC Lead", processor: "Processor::Lead", active: true, user_id: user.id}
+])
+
 Entry.create!([
   {point_time: "2014-07-03 07:00:00", point_value: 54.70524608, sequence_id: 1, source: "automatic", ignored: false},
   {point_time: "2014-07-04 07:00:00", point_value: 51.50720839, sequence_id: 1, source: "automatic", ignored: false},
@@ -383,16 +399,4 @@ Entry.create!([
   {point_time: "2014-09-27 07:01:00", point_value: 20.0, sequence_id: 9, source: "processor", ignored: false},
   {point_time: "2014-09-26 07:01:00", point_value: 16.0, sequence_id: 9, source: "processor", ignored: false},
   {point_time: "2014-10-11 07:01:00", point_value: 29.0, sequence_id: 9, source: "processor", ignored: false}
-])
-
-user = User.find_by(email: "steve.bussey@salesloft.com")
-
-Sequence.create!([
-  {title: "SFDC Contact", processor: "Processor::Contact", active: false, user_id: user.id},
-  {title: "SFDC Account", processor: "Processor::Account", active: false, user_id: user.id},
-  {title: "SFDC Task", processor: "Processor::Task", active: false, user_id: user.id},
-  {title: "SFDC Opportunity", processor: "Processor::Opportunity", active: false, user_id: user.id},
-  {title: "Generic Chart 2", processor: nil, active: true, user_id: user.id},
-  {title: "Generic Chart", processor: nil, active: true, user_id: user.id},
-  {title: "SFDC Lead", processor: "Processor::Lead", active: true, user_id: user.id}
 ])
