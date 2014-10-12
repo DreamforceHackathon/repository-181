@@ -14,7 +14,7 @@ APP.directive("outOfControl", function() {
         $scope.sequence.customPOST({time: time}, "entries/ignore").then(function(entries) {
           delete $scope.points[time];
           $scope.pointsCount--;
-          Notify.success("Success", "This point will not longer appear in charts or reports. Refresh to update the charts.");
+          //Notify.success("Success", "This point will not longer appear in charts or reports. Refresh to update the charts.");
         });
       }
     }]
